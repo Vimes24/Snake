@@ -9,8 +9,14 @@ import com.badlogic.gdx.math.GridPoint2;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * enum - typ wyliczeniowy który umożliwia zadeklarowanie ograniczonej liczby możliwych wartości
+ */
 enum Direction {RIGHT, LEFT, UP, DOWN}
 
+/**
+ * Klasa reprezentuje na ekranie postać węża
+ */
 public class Snake {
     private final Texture texture;
     private final List<GridPoint2> snakeElement;
@@ -18,11 +24,18 @@ public class Snake {
     private float elapsedTime;
     private  boolean changeDirection;
 
+    /**
+     * Konstruktor tworzący obiekt
+     * @param texture wykorzystuje asset w formie zdjęcia do zobrazowania węża
+     */
     public Snake(Texture texture){
         this.texture = texture;
         snakeElement = new ArrayList<>();
     }
 
+    /**
+     * metoda resetująca ustawienia po zakończeniu i ponownym uruchomieniu gry
+     */
     public void newGame(){
         elapsedTime = 0;
         snakeDirection = Direction.RIGHT;
@@ -34,6 +47,10 @@ public class Snake {
         snakeElement.add(new GridPoint2(30, 30));
     }
 
+    /**
+     * metoda odpowiedzialna za ruch węża w odpowiednim czasie
+     * @param deltaTime określa czas, jaki upłynął od jej poprzedniego wywołania
+     */
     public void act(float deltaTime){
         if(changeDirection){
             directionChange();
@@ -46,14 +63,25 @@ public class Snake {
         }
     }
 
+    /**
+     * metoda sprawdzająca czy głowa węża znalazła się na pozycji owocu
+     * @param fruitPosition określa aktualnie wygenerowaną pozycję owocu
+     * @return zwraca true gdy głowa jest na pozycji owocu
+     */
     public boolean isFruitFound(GridPoint2 fruitPosition){
         return snakeElement.get(0).equals(fruitPosition);
     }
 
+    /**
+     * metoda powiększa węża o jeden element od ogona
+     */
     public void extendSnake(){
         snakeElement.add(new GridPoint2(snakeElement.get(snakeElement.size() - 1)));
     }
 
+    /**
+     * metoda odpowedzialna za przemieszczanie się węża
+     */
     private void move(){
         for (int i = snakeElement.size() - 1; i > 0; i--) {
             snakeElement.get(i).set(snakeElement.get(i - 1));
@@ -83,6 +111,9 @@ public class Snake {
         }
     }
 
+    /**
+     * metoda odpowiedzialna za zmianę kierunku ruchu węża
+     */
     private void directionChange(){
         Direction nextDirection = snakeDirection;
         if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && snakeDirection != Direction.RIGHT){
@@ -107,6 +138,10 @@ public class Snake {
         }
     }
 
+    /**
+     * metoda sprawdzająca czy głowa węża nie zderzyła się z resztą ciała
+     * @return zwraca true gdy głowa zderzy się z resztą ciała co kończy grę
+     */
     public boolean hasHit(){
         for (int i = 1; i < snakeElement.size(); i++) {
             if(snakeElement.get(i).equals(snakeElement.get(0))){
@@ -116,6 +151,10 @@ public class Snake {
         return false;
     }
 
+    /**
+     * metoda rysuje kolejne kwadraty obrazujące węża
+     * @param batch wykorzystany w pętli for each do przejścia przez całą listę
+     */
     public void draw(Batch batch){
         for(GridPoint2 pos : snakeElement){
             batch.draw(texture, pos.x, pos.y);
