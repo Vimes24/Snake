@@ -9,8 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		// podstawowa konfiguracja okna gry (brak możliwości zmiany rozmiaru okna, rozmiar 840x450 pikseli i tytuł)
 		config.resizable = false;
-		config.width = 840;
-		config.height = 450;
+		config.width = 420;
+		config.height = 225;
 		config.title = "Snake!";
 		new LwjglApplication(new SnakeGame(), config);
 	}

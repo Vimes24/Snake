@@ -16,11 +16,17 @@ public class Snake {
     private final List<GridPoint2> snakeElement;
     private Direction snakeDirection;
     private float elapsedTime;
+    private  boolean changeDirection;
 
     public Snake(Texture texture){
         this.texture = texture;
-        snakeDirection = Direction.RIGHT;
         snakeElement = new ArrayList<>();
+    }
+
+    public void newGame(){
+        elapsedTime = 0;
+        snakeDirection = Direction.RIGHT;
+        snakeElement.clear();
         snakeElement.add(new GridPoint2(90, 30));
         snakeElement.add(new GridPoint2(75, 30));
         snakeElement.add(new GridPoint2(60, 30));
@@ -29,13 +35,23 @@ public class Snake {
     }
 
     public void act(float deltaTime){
-        directionChange();
+        if(changeDirection){
+            directionChange();
+        }
         elapsedTime += deltaTime;
-
         if(elapsedTime >= 0.1){
             elapsedTime = 0;
+            changeDirection = true;
             move();
         }
+    }
+
+    public boolean isFruitFound(GridPoint2 fruitPosition){
+        return snakeElement.get(0).equals(fruitPosition);
+    }
+
+    public void extendSnake(){
+        snakeElement.add(new GridPoint2(snakeElement.get(snakeElement.size() - 1)));
     }
 
     private void move(){
@@ -68,21 +84,36 @@ public class Snake {
     }
 
     private void directionChange(){
+        Direction nextDirection = snakeDirection;
         if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && snakeDirection != Direction.RIGHT){
-            snakeDirection = Direction.LEFT;
+            nextDirection = Direction.LEFT;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) && snakeDirection != Direction.LEFT){
-            snakeDirection = Direction.RIGHT;
+            nextDirection = Direction.RIGHT;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && snakeDirection != Direction.DOWN){
-            snakeDirection = Direction.UP;
+            nextDirection = Direction.UP;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) && snakeDirection != Direction.UP){
-            snakeDirection = Direction.DOWN;
+            nextDirection = Direction.DOWN;
         }
+
+        if(snakeDirection != nextDirection){
+            snakeDirection = nextDirection;
+            changeDirection = false;
+        }
+    }
+
+    public boolean hasHit(){
+        for (int i = 1; i < snakeElement.size(); i++) {
+            if(snakeElement.get(i).equals(snakeElement.get(0))){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void draw(Batch batch){

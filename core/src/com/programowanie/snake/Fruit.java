@@ -12,7 +12,6 @@ public class Fruit {
     public Fruit(Texture texture){
         this.texture = texture;
         this.position = new GridPoint2();
-        randomLocation();
     }
 
     public void randomLocation(){
