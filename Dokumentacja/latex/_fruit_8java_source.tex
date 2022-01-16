@@ -1,0 +1,37 @@
+\doxysection{Fruit.\+java}
+\label{_fruit_8java_source}\index{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/Fruit.java@{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/Fruit.java}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{keyword}{package }com.programowanie.snake;}
+\DoxyCodeLine{00002 }
+\DoxyCodeLine{00003 \textcolor{keyword}{import} com.badlogic.gdx.Gdx;}
+\DoxyCodeLine{00004 \textcolor{keyword}{import} com.badlogic.gdx.graphics.Texture;}
+\DoxyCodeLine{00005 \textcolor{keyword}{import} com.badlogic.gdx.graphics.g2d.Batch;}
+\DoxyCodeLine{00006 \textcolor{keyword}{import} com.badlogic.gdx.math.GridPoint2;}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00011 \textcolor{keyword}{public} \textcolor{keyword}{class }Fruit \{}
+\DoxyCodeLine{00012     \textcolor{keyword}{private} \textcolor{keyword}{final} GridPoint2 position;}
+\DoxyCodeLine{00013     \textcolor{keyword}{private} \textcolor{keyword}{final} Texture texture;}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00019     \textcolor{keyword}{public} Fruit(Texture texture)\{}
+\DoxyCodeLine{00020         this.texture = texture;}
+\DoxyCodeLine{00021         this.position = \textcolor{keyword}{new} GridPoint2();}
+\DoxyCodeLine{00022     \}}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00027     \textcolor{keyword}{public} \textcolor{keywordtype}{void} randomLocation()\{}
+\DoxyCodeLine{00028         \textcolor{keywordtype}{int} xPosition = Gdx.graphics.getWidth() / texture.getWidth();}
+\DoxyCodeLine{00029         \textcolor{keywordtype}{int} yPosition = Gdx.graphics.getHeight() / texture.getHeight();}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031         this.position.set((\textcolor{keywordtype}{int}) (Math.random() * xPosition) * texture.getWidth(), (\textcolor{keywordtype}{int}) (Math.random() * yPosition) * texture.getHeight());}
+\DoxyCodeLine{00032     \}}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00038     \textcolor{keyword}{public} \textcolor{keywordtype}{void} draw(Batch batch)\{}
+\DoxyCodeLine{00039         batch.draw(texture, position.x, position.y);}
+\DoxyCodeLine{00040     \}}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00046     \textcolor{keyword}{public} GridPoint2 getPosition() \{}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{return} this.position;}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}

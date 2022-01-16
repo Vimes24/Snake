@@ -1,0 +1,22 @@
+\doxysection{Desktop\+Launcher.\+java}
+\label{_desktop_launcher_8java_source}\index{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/desktop/src/com/programowanie/snake/desktop/DesktopLauncher.java@{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/desktop/src/com/programowanie/snake/desktop/DesktopLauncher.java}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{keyword}{package }com.programowanie.snake.desktop;}
+\DoxyCodeLine{00002 }
+\DoxyCodeLine{00003 \textcolor{keyword}{import} com.badlogic.gdx.backends.lwjgl.LwjglApplication;}
+\DoxyCodeLine{00004 \textcolor{keyword}{import} com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;}
+\DoxyCodeLine{00005 \textcolor{keyword}{import} com.programowanie.snake.SnakeGame;}
+\DoxyCodeLine{00006 }
+\DoxyCodeLine{00011 \textcolor{keyword}{public} \textcolor{keyword}{class }DesktopLauncher \{}
+\DoxyCodeLine{00012     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{void} main (String[] arg) \{}
+\DoxyCodeLine{00013         LwjglApplicationConfiguration config = \textcolor{keyword}{new} LwjglApplicationConfiguration();}
+\DoxyCodeLine{00014         config.resizable = \textcolor{keyword}{false};}
+\DoxyCodeLine{00015         config.width = 420;}
+\DoxyCodeLine{00016         config.height = 225;}
+\DoxyCodeLine{00017         config.title = \textcolor{stringliteral}{"{}Snake!"{}};}
+\DoxyCodeLine{00018         \textcolor{keyword}{new} LwjglApplication(\textcolor{keyword}{new} SnakeGame(), config);}
+\DoxyCodeLine{00019     \}}
+\DoxyCodeLine{00020 \}}
+
+\end{DoxyCode}

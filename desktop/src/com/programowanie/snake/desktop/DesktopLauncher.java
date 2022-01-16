@@ -5,8 +5,8 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.programowanie.snake.SnakeGame;
 
 /**
- * Podstawowa klasa wygenerowana przez użycie LibGDX
- * podstawowa konfiguracja okna gry (brak możliwości zmiany rozmiaru okna, zadany rozmiar pikseli i tytuł)
+ * Podstawowa klasa wygenerowana przez uzycie LibGDX
+ * podstawowa konfiguracja okna gry (brak mozliwosci zmiany rozmiaru okna, zadany rozmiar pikseli i tytul)
  */
 public class DesktopLauncher {
 	public static void main (String[] arg) {

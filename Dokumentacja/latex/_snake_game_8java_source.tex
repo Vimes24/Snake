@@ -1,0 +1,68 @@
+\doxysection{Snake\+Game.\+java}
+\label{_snake_game_8java_source}\index{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/SnakeGame.java@{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/SnakeGame.java}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{keyword}{package }com.programowanie.snake;}
+\DoxyCodeLine{00002 }
+\DoxyCodeLine{00003 \textcolor{keyword}{import} com.badlogic.gdx.ApplicationAdapter;}
+\DoxyCodeLine{00004 \textcolor{keyword}{import} com.badlogic.gdx.Gdx;}
+\DoxyCodeLine{00005 \textcolor{keyword}{import} com.badlogic.gdx.Input;}
+\DoxyCodeLine{00006 \textcolor{keyword}{import} com.badlogic.gdx.graphics.Texture;}
+\DoxyCodeLine{00007 \textcolor{keyword}{import} com.badlogic.gdx.graphics.g2d.SpriteBatch;}
+\DoxyCodeLine{00008 \textcolor{keyword}{import} com.badlogic.gdx.utils.ScreenUtils;}
+\DoxyCodeLine{00012 \textcolor{keyword}{public} \textcolor{keyword}{class }SnakeGame \textcolor{keyword}{extends} ApplicationAdapter \{}
+\DoxyCodeLine{00013     \textcolor{keyword}{private} SpriteBatch batch;}
+\DoxyCodeLine{00014     \textcolor{keyword}{private} Texture snakeImg;}
+\DoxyCodeLine{00015     \textcolor{keyword}{private} Texture fruitImg;}
+\DoxyCodeLine{00016     \textcolor{keyword}{private} Snake snake;}
+\DoxyCodeLine{00017     \textcolor{keyword}{private} Fruit fruit;}
+\DoxyCodeLine{00018     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} gameOver;}
+\DoxyCodeLine{00022     @Override}
+\DoxyCodeLine{00023     \textcolor{keyword}{public} \textcolor{keywordtype}{void} create () \{}
+\DoxyCodeLine{00024         batch = \textcolor{keyword}{new} SpriteBatch();}
+\DoxyCodeLine{00025         snakeImg = \textcolor{keyword}{new} Texture(\textcolor{stringliteral}{"{}snake.png"{}});}
+\DoxyCodeLine{00026         fruitImg = \textcolor{keyword}{new} Texture(\textcolor{stringliteral}{"{}fruit.png"{}});}
+\DoxyCodeLine{00027         snake = \textcolor{keyword}{new} Snake(snakeImg);}
+\DoxyCodeLine{00028         fruit = \textcolor{keyword}{new} Fruit(fruitImg);}
+\DoxyCodeLine{00029         startNewGame();}
+\DoxyCodeLine{00030     \}}
+\DoxyCodeLine{00034     \textcolor{keyword}{private} \textcolor{keywordtype}{void} startNewGame()\{}
+\DoxyCodeLine{00035         snake.newGame();}
+\DoxyCodeLine{00036         fruit.randomLocation();}
+\DoxyCodeLine{00037         gameOver = \textcolor{keyword}{false};}
+\DoxyCodeLine{00038     \}}
+\DoxyCodeLine{00042     @Override}
+\DoxyCodeLine{00043     \textcolor{keyword}{public} \textcolor{keywordtype}{void} render () \{}
+\DoxyCodeLine{00044         update();}
+\DoxyCodeLine{00045         ScreenUtils.clear(1, 1, 1, 1);}
+\DoxyCodeLine{00046         batch.begin();}
+\DoxyCodeLine{00047         fruit.draw(batch);}
+\DoxyCodeLine{00048         snake.draw(batch);}
+\DoxyCodeLine{00049         batch.end();}
+\DoxyCodeLine{00050     \}}
+\DoxyCodeLine{00054     \textcolor{keyword}{private} \textcolor{keywordtype}{void} update()\{}
+\DoxyCodeLine{00055         \textcolor{keywordflow}{if}(!gameOver)\{}
+\DoxyCodeLine{00056             snake.act(Gdx.graphics.getDeltaTime());}
+\DoxyCodeLine{00057             \textcolor{keywordflow}{if}(snake.isFruitFound(fruit.getPosition()))\{}
+\DoxyCodeLine{00058                 snake.extendSnake();}
+\DoxyCodeLine{00059                 fruit.randomLocation();}
+\DoxyCodeLine{00060             \}}
+\DoxyCodeLine{00061             \textcolor{keywordflow}{if}(snake.hasHit())\{}
+\DoxyCodeLine{00062                 gameOver = \textcolor{keyword}{true};}
+\DoxyCodeLine{00063             \}}
+\DoxyCodeLine{00064         \}}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00066             \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))\{}
+\DoxyCodeLine{00067                 startNewGame();}
+\DoxyCodeLine{00068             \}}
+\DoxyCodeLine{00069         \}}
+\DoxyCodeLine{00070     \}}
+\DoxyCodeLine{00074     @Override}
+\DoxyCodeLine{00075     \textcolor{keyword}{public} \textcolor{keywordtype}{void} dispose () \{}
+\DoxyCodeLine{00076         batch.dispose();}
+\DoxyCodeLine{00077         snakeImg.dispose();}
+\DoxyCodeLine{00078         fruitImg.dispose();}
+\DoxyCodeLine{00079     \}}
+\DoxyCodeLine{00080 \}}
+
+\end{DoxyCode}

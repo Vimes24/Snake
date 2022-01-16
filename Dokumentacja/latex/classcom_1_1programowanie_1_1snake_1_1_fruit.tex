@@ -1,0 +1,146 @@
+\doxysection{com.\+programowanie.\+snake.\+Fruit Class Reference}
+\label{classcom_1_1programowanie_1_1snake_1_1_fruit}\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Fruit} (Texture \textbf{ texture})
+\item 
+void \textbf{ random\+Location} ()
+\item 
+void \textbf{ draw} (Batch batch)
+\item 
+Grid\+Point2 \textbf{ get\+Position} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Grid\+Point2 \textbf{ position}
+\item 
+final Texture \textbf{ texture}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+klasa generujaca obiekt owocu zjadanego przez weza 
+
+Definition at line \textbf{ 11} of file \textbf{ Fruit.\+java}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_a2630967bcf9bb1c058b4db5432e25dcc}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!Fruit@{Fruit}}
+\index{Fruit@{Fruit}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{Fruit()}
+{\footnotesize\ttfamily com.\+programowanie.\+snake.\+Fruit.\+Fruit (\begin{DoxyParamCaption}\item[{Texture}]{texture }\end{DoxyParamCaption})}
+
+Konstruktor tworzacy obiekt 
+\begin{DoxyParams}{Parameters}
+{\em texture} & wykorzystuje asset w formie zdjecia do zobrazowania weza \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 19} of file \textbf{ Fruit.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019                                  \{}
+\DoxyCodeLine{00020         this.texture = texture;}
+\DoxyCodeLine{00021         this.position = \textcolor{keyword}{new} GridPoint2();}
+\DoxyCodeLine{00022     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_aa09be54ed15c33b67cc8e32270e210ff}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!draw@{draw}}
+\index{draw@{draw}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{draw()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Fruit.\+draw (\begin{DoxyParamCaption}\item[{Batch}]{batch }\end{DoxyParamCaption})}
+
+metoda rysuje obraz owocu na planszy 
+\begin{DoxyParams}{Parameters}
+{\em batch} & odpowiedzialny za wrysowanie tekstury \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 38} of file \textbf{ Fruit.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038                                  \{}
+\DoxyCodeLine{00039         batch.draw(texture, position.x, position.y);}
+\DoxyCodeLine{00040     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_a0907830e225098631ff72bd45be1ea80}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{getPosition()}
+{\footnotesize\ttfamily Grid\+Point2 com.\+programowanie.\+snake.\+Fruit.\+get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda zwraca pozycje owocu \begin{DoxyReturn}{Returns}
+zwraca miejsce na planszy gdzie jest umiejscowiony owoc 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 46} of file \textbf{ Fruit.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046                                     \{}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{return} this.position;}
+\DoxyCodeLine{00048     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_a06a32d054bb3c14cadd43d378941198f}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!randomLocation@{randomLocation}}
+\index{randomLocation@{randomLocation}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{randomLocation()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Fruit.\+random\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda generujaca owoc w losowym miejscu planszy 
+
+Definition at line \textbf{ 27} of file \textbf{ Fruit.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027                                 \{}
+\DoxyCodeLine{00028         \textcolor{keywordtype}{int} xPosition = Gdx.graphics.getWidth() / texture.getWidth();}
+\DoxyCodeLine{00029         \textcolor{keywordtype}{int} yPosition = Gdx.graphics.getHeight() / texture.getHeight();}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031         this.position.set((\textcolor{keywordtype}{int}) (Math.random() * xPosition) * texture.getWidth(), (\textcolor{keywordtype}{int}) (Math.random() * yPosition) * texture.getHeight());}
+\DoxyCodeLine{00032     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_a44a29196137284f736078188ef3f559e}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!position@{position}}
+\index{position@{position}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{position}
+{\footnotesize\ttfamily final Grid\+Point2 com.\+programowanie.\+snake.\+Fruit.\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 12} of file \textbf{ Fruit.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_fruit_a1b61f6a7735f075ca68ceb16fabfc487}} 
+\index{com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}!texture@{texture}}
+\index{texture@{texture}!com.programowanie.snake.Fruit@{com.programowanie.snake.Fruit}}
+\doxysubsubsection{texture}
+{\footnotesize\ttfamily final Texture com.\+programowanie.\+snake.\+Fruit.\+texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 13} of file \textbf{ Fruit.\+java}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+W\+:/studia/\+Materialy WSIZ/\+III semestr/\+Programowanie obiektowe/\+Projekt/\+Snake/core/src/com/programowanie/snake/\textbf{ Fruit.\+java}\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\doxysection{Snake.\+java}
+\label{_snake_8java_source}\index{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/Snake.java@{W:/studia/Materialy WSIZ/III semestr/Programowanie obiektowe/Projekt/Snake/core/src/com/programowanie/snake/Snake.java}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{keyword}{package }com.programowanie.snake;}
+\DoxyCodeLine{00002 }
+\DoxyCodeLine{00003 \textcolor{keyword}{import} com.badlogic.gdx.Gdx;}
+\DoxyCodeLine{00004 \textcolor{keyword}{import} com.badlogic.gdx.Input;}
+\DoxyCodeLine{00005 \textcolor{keyword}{import} com.badlogic.gdx.graphics.Texture;}
+\DoxyCodeLine{00006 \textcolor{keyword}{import} com.badlogic.gdx.graphics.g2d.Batch;}
+\DoxyCodeLine{00007 \textcolor{keyword}{import} com.badlogic.gdx.math.GridPoint2;}
+\DoxyCodeLine{00008 }
+\DoxyCodeLine{00009 \textcolor{keyword}{import} java.util.ArrayList;}
+\DoxyCodeLine{00010 \textcolor{keyword}{import} java.util.List;}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00015 \textcolor{keyword}{enum} Direction \{RIGHT, LEFT, UP, DOWN\}}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00020 \textcolor{keyword}{public} \textcolor{keyword}{class }Snake \{}
+\DoxyCodeLine{00021     \textcolor{keyword}{private} \textcolor{keyword}{final} Texture texture;}
+\DoxyCodeLine{00022     \textcolor{keyword}{private} \textcolor{keyword}{final} List<GridPoint2> snakeElement;}
+\DoxyCodeLine{00023     \textcolor{keyword}{private} Direction snakeDirection;}
+\DoxyCodeLine{00024     \textcolor{keyword}{private} \textcolor{keywordtype}{float} elapsedTime;}
+\DoxyCodeLine{00025     \textcolor{keyword}{private}  \textcolor{keywordtype}{boolean} changeDirection;}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00031     \textcolor{keyword}{public} Snake(Texture texture)\{}
+\DoxyCodeLine{00032         this.texture = texture;}
+\DoxyCodeLine{00033         snakeElement = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{00034     \}}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00039     \textcolor{keyword}{public} \textcolor{keywordtype}{void} newGame()\{}
+\DoxyCodeLine{00040         elapsedTime = 0;}
+\DoxyCodeLine{00041         snakeDirection = Direction.RIGHT;}
+\DoxyCodeLine{00042         snakeElement.clear();}
+\DoxyCodeLine{00043         snakeElement.add(\textcolor{keyword}{new} GridPoint2(90, 30));}
+\DoxyCodeLine{00044         snakeElement.add(\textcolor{keyword}{new} GridPoint2(75, 30));}
+\DoxyCodeLine{00045         snakeElement.add(\textcolor{keyword}{new} GridPoint2(60, 30));}
+\DoxyCodeLine{00046         snakeElement.add(\textcolor{keyword}{new} GridPoint2(45, 30));}
+\DoxyCodeLine{00047         snakeElement.add(\textcolor{keyword}{new} GridPoint2(30, 30));}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00054     \textcolor{keyword}{public} \textcolor{keywordtype}{void} act(\textcolor{keywordtype}{float} deltaTime)\{}
+\DoxyCodeLine{00055         \textcolor{keywordflow}{if}(changeDirection)\{}
+\DoxyCodeLine{00056             directionChange();}
+\DoxyCodeLine{00057         \}}
+\DoxyCodeLine{00058         elapsedTime += deltaTime;}
+\DoxyCodeLine{00059         \textcolor{keywordflow}{if}(elapsedTime >= 0.1)\{}
+\DoxyCodeLine{00060             elapsedTime = 0;}
+\DoxyCodeLine{00061             changeDirection = \textcolor{keyword}{true};}
+\DoxyCodeLine{00062             move();}
+\DoxyCodeLine{00063         \}}
+\DoxyCodeLine{00064     \}}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00071     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} isFruitFound(GridPoint2 fruitPosition)\{}
+\DoxyCodeLine{00072         \textcolor{keywordflow}{return} snakeElement.get(0).equals(fruitPosition);}
+\DoxyCodeLine{00073     \}}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00078     \textcolor{keyword}{public} \textcolor{keywordtype}{void} extendSnake()\{}
+\DoxyCodeLine{00079         snakeElement.add(\textcolor{keyword}{new} GridPoint2(snakeElement.get(snakeElement.size() -\/ 1)));}
+\DoxyCodeLine{00080     \}}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00085     \textcolor{keyword}{private} \textcolor{keywordtype}{void} move()\{}
+\DoxyCodeLine{00086         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = snakeElement.size() -\/ 1; i > 0; i-\/-\/) \{}
+\DoxyCodeLine{00087             snakeElement.get(i).set(snakeElement.get(i -\/ 1));}
+\DoxyCodeLine{00088         \}}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090         \textcolor{keywordtype}{int} elementWidth = texture.getWidth();}
+\DoxyCodeLine{00091         \textcolor{keywordtype}{int} elementHeight = texture.getWidth();}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093         \textcolor{keywordtype}{int} lastElementX = Gdx.graphics.getWidth() -\/ elementWidth;}
+\DoxyCodeLine{00094         \textcolor{keywordtype}{int} lastElementY = Gdx.graphics.getHeight() -\/ elementHeight;}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096         GridPoint2 head = snakeElement.get(0);}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098         \textcolor{keywordflow}{switch} (snakeDirection)\{}
+\DoxyCodeLine{00099             \textcolor{keywordflow}{case} RIGHT:}
+\DoxyCodeLine{00100                 head.x = (head.x == lastElementX) ? 0 : head.x + elementWidth;}
+\DoxyCodeLine{00101                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102             \textcolor{keywordflow}{case} LEFT:}
+\DoxyCodeLine{00103                 head.x = (head.x == 0) ? lastElementX : head.x -\/ elementWidth;}
+\DoxyCodeLine{00104                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{case} UP:}
+\DoxyCodeLine{00106                 head.y = (head.y == lastElementY) ? 0 : head.y + elementHeight;}
+\DoxyCodeLine{00107                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108             \textcolor{keywordflow}{case} DOWN:}
+\DoxyCodeLine{00109                 head.y = (head.y == 0) ? lastElementY : head.y -\/ elementHeight;}
+\DoxyCodeLine{00110                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00111         \}}
+\DoxyCodeLine{00112     \}}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00117     \textcolor{keyword}{private} \textcolor{keywordtype}{void} directionChange()\{}
+\DoxyCodeLine{00118         Direction nextDirection = snakeDirection;}
+\DoxyCodeLine{00119         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) \&\& snakeDirection != Direction.RIGHT)\{}
+\DoxyCodeLine{00120             nextDirection = Direction.LEFT;}
+\DoxyCodeLine{00121         \}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) \&\& snakeDirection != Direction.LEFT)\{}
+\DoxyCodeLine{00124             nextDirection = Direction.RIGHT;}
+\DoxyCodeLine{00125         \}}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.UP) \&\& snakeDirection != Direction.DOWN)\{}
+\DoxyCodeLine{00128             nextDirection = Direction.UP;}
+\DoxyCodeLine{00129         \}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) \&\& snakeDirection != Direction.UP)\{}
+\DoxyCodeLine{00132             nextDirection = Direction.DOWN;}
+\DoxyCodeLine{00133         \}}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135         \textcolor{keywordflow}{if}(snakeDirection != nextDirection)\{}
+\DoxyCodeLine{00136             snakeDirection = nextDirection;}
+\DoxyCodeLine{00137             changeDirection = \textcolor{keyword}{false};}
+\DoxyCodeLine{00138         \}}
+\DoxyCodeLine{00139     \}}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00145     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} hasHit()\{}
+\DoxyCodeLine{00146         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < snakeElement.size(); i++) \{}
+\DoxyCodeLine{00147             \textcolor{keywordflow}{if}(snakeElement.get(i).equals(snakeElement.get(0)))\{}
+\DoxyCodeLine{00148                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00149             \}}
+\DoxyCodeLine{00150         \}}
+\DoxyCodeLine{00151         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00152     \}}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00158     \textcolor{keyword}{public} \textcolor{keywordtype}{void} draw(Batch batch)\{}
+\DoxyCodeLine{00159         \textcolor{keywordflow}{for}(GridPoint2 pos : snakeElement)\{}
+\DoxyCodeLine{00160             batch.draw(texture, pos.x, pos.y);}
+\DoxyCodeLine{00161         \}}
+\DoxyCodeLine{00162     \}}
+\DoxyCodeLine{00163 \}}
+
+\end{DoxyCode}

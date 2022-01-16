@@ -1,0 +1,224 @@
+\doxysection{com.\+programowanie.\+snake.\+Snake\+Game Class Reference}
+\label{classcom_1_1programowanie_1_1snake_1_1_snake_game}\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ create} ()
+\item 
+void \textbf{ render} ()
+\item 
+void \textbf{ dispose} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ start\+New\+Game} ()
+\item 
+void \textbf{ update} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Sprite\+Batch \textbf{ batch}
+\item 
+Texture \textbf{ snake\+Img}
+\item 
+Texture \textbf{ fruit\+Img}
+\item 
+\textbf{ Snake} \textbf{ snake}
+\item 
+\textbf{ Fruit} \textbf{ fruit}
+\item 
+boolean \textbf{ game\+Over}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Glowna klasa aplikacji 
+
+Definition at line \textbf{ 12} of file \textbf{ Snake\+Game.\+java}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a9f62196816ddd3b0f5b7a99fc867f39f}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!create@{create}}
+\index{create@{create}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{create()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake\+Game.\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda wywolywana jednorazowo podczas uruchamiania programu – inicjalizacja gry 
+
+Definition at line \textbf{ 23} of file \textbf{ Snake\+Game.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023                           \{}
+\DoxyCodeLine{00024         batch = \textcolor{keyword}{new} SpriteBatch();}
+\DoxyCodeLine{00025         snakeImg = \textcolor{keyword}{new} Texture(\textcolor{stringliteral}{"{}snake.png"{}});}
+\DoxyCodeLine{00026         fruitImg = \textcolor{keyword}{new} Texture(\textcolor{stringliteral}{"{}fruit.png"{}});}
+\DoxyCodeLine{00027         snake = \textcolor{keyword}{new} Snake(snakeImg);}
+\DoxyCodeLine{00028         fruit = \textcolor{keyword}{new} Fruit(fruitImg);}
+\DoxyCodeLine{00029         startNewGame();}
+\DoxyCodeLine{00030     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a7ccef7109232cfa40393cbc8c814020d}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!dispose@{dispose}}
+\index{dispose@{dispose}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{dispose()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake\+Game.\+dispose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda wywolywana, gdy program ma zakonczyc dzialanie, a my powinnismy zwolnic zasoby 
+
+Definition at line \textbf{ 75} of file \textbf{ Snake\+Game.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075                            \{}
+\DoxyCodeLine{00076         batch.dispose();}
+\DoxyCodeLine{00077         snakeImg.dispose();}
+\DoxyCodeLine{00078         fruitImg.dispose();}
+\DoxyCodeLine{00079     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a6f88d47180a5b8d6f10d3489112fe867}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!render@{render}}
+\index{render@{render}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{render()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake\+Game.\+render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda wywolywana celem aktualizowania stanu i rysowania swiata gry 
+
+Definition at line \textbf{ 43} of file \textbf{ Snake\+Game.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043                           \{}
+\DoxyCodeLine{00044         update();}
+\DoxyCodeLine{00045         ScreenUtils.clear(1, 1, 1, 1);}
+\DoxyCodeLine{00046         batch.begin();}
+\DoxyCodeLine{00047         fruit.draw(batch);}
+\DoxyCodeLine{00048         snake.draw(batch);}
+\DoxyCodeLine{00049         batch.end();}
+\DoxyCodeLine{00050     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a7eda7ed9aa809deec2196351b6cfab2c}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!startNewGame@{startNewGame}}
+\index{startNewGame@{startNewGame}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{startNewGame()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake\+Game.\+start\+New\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+metoda uruchamiajaca powtornie nowa gre 
+
+Definition at line \textbf{ 34} of file \textbf{ Snake\+Game.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034                                \{}
+\DoxyCodeLine{00035         snake.newGame();}
+\DoxyCodeLine{00036         fruit.randomLocation();}
+\DoxyCodeLine{00037         gameOver = \textcolor{keyword}{false};}
+\DoxyCodeLine{00038     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_add781fc3754ecb9b2f0f732d86e3a852}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!update@{update}}
+\index{update@{update}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{update()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake\+Game.\+update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+metoda aktualizujaca stan gry 
+
+Definition at line \textbf{ 54} of file \textbf{ Snake\+Game.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054                          \{}
+\DoxyCodeLine{00055         \textcolor{keywordflow}{if}(!gameOver)\{}
+\DoxyCodeLine{00056             snake.act(Gdx.graphics.getDeltaTime());}
+\DoxyCodeLine{00057             \textcolor{keywordflow}{if}(snake.isFruitFound(fruit.getPosition()))\{}
+\DoxyCodeLine{00058                 snake.extendSnake();}
+\DoxyCodeLine{00059                 fruit.randomLocation();}
+\DoxyCodeLine{00060             \}}
+\DoxyCodeLine{00061             \textcolor{keywordflow}{if}(snake.hasHit())\{}
+\DoxyCodeLine{00062                 gameOver = \textcolor{keyword}{true};}
+\DoxyCodeLine{00063             \}}
+\DoxyCodeLine{00064         \}}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00066             \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))\{}
+\DoxyCodeLine{00067                 startNewGame();}
+\DoxyCodeLine{00068             \}}
+\DoxyCodeLine{00069         \}}
+\DoxyCodeLine{00070     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a139af1d7751856afe8476c558a63eaf6}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!batch@{batch}}
+\index{batch@{batch}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{batch}
+{\footnotesize\ttfamily Sprite\+Batch com.\+programowanie.\+snake.\+Snake\+Game.\+batch\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 13} of file \textbf{ Snake\+Game.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a2570f789755080711ba2420d6a8bdde8}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!fruit@{fruit}}
+\index{fruit@{fruit}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{fruit}
+{\footnotesize\ttfamily \textbf{ Fruit} com.\+programowanie.\+snake.\+Snake\+Game.\+fruit\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ Snake\+Game.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_adcaad511b40201ac763b587d0b4b38ae}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!fruitImg@{fruitImg}}
+\index{fruitImg@{fruitImg}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{fruitImg}
+{\footnotesize\ttfamily Texture com.\+programowanie.\+snake.\+Snake\+Game.\+fruit\+Img\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 15} of file \textbf{ Snake\+Game.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_aa2fe51f77a05f4de735e1941bccc8e40}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!gameOver@{gameOver}}
+\index{gameOver@{gameOver}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{gameOver}
+{\footnotesize\ttfamily boolean com.\+programowanie.\+snake.\+Snake\+Game.\+game\+Over\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ Snake\+Game.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a8221983753f59d10fc47de407bfb96d3}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!snake@{snake}}
+\index{snake@{snake}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{snake}
+{\footnotesize\ttfamily \textbf{ Snake} com.\+programowanie.\+snake.\+Snake\+Game.\+snake\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ Snake\+Game.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_game_a04b5cffb89c7007a40b7ee6d39c1c538}} 
+\index{com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}!snakeImg@{snakeImg}}
+\index{snakeImg@{snakeImg}!com.programowanie.snake.SnakeGame@{com.programowanie.snake.SnakeGame}}
+\doxysubsubsection{snakeImg}
+{\footnotesize\ttfamily Texture com.\+programowanie.\+snake.\+Snake\+Game.\+snake\+Img\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 14} of file \textbf{ Snake\+Game.\+java}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+W\+:/studia/\+Materialy WSIZ/\+III semestr/\+Programowanie obiektowe/\+Projekt/\+Snake/core/src/com/programowanie/snake/\textbf{ Snake\+Game.\+java}\end{DoxyCompactItemize}

@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * enum - typ wyliczeniowy który umożliwia zadeklarowanie ograniczonej liczby możliwych wartości
+ * enum - typ wyliczeniowy ktory umozliwia zadeklarowanie ograniczonej liczby mozliwych wartosci
  */
 enum Direction {RIGHT, LEFT, UP, DOWN}
 
 /**
- * Klasa reprezentuje na ekranie postać węża
+ * Klasa reprezentuje na ekranie postac weza
  */
 public class Snake {
     private final Texture texture;
@@ -25,8 +25,8 @@ public class Snake {
     private  boolean changeDirection;
 
     /**
-     * Konstruktor tworzący obiekt
-     * @param texture wykorzystuje asset w formie zdjęcia do zobrazowania węża
+     * Konstruktor tworzacy obiekt
+     * @param texture wykorzystuje asset w formie zdjecia do zobrazowania weza
      */
     public Snake(Texture texture){
         this.texture = texture;
@@ -34,7 +34,7 @@ public class Snake {
     }
 
     /**
-     * metoda resetująca ustawienia po zakończeniu i ponownym uruchomieniu gry
+     * metoda resetujaca ustawienia po zakonczeniu i ponownym uruchomieniu gry
      */
     public void newGame(){
         elapsedTime = 0;
@@ -48,8 +48,8 @@ public class Snake {
     }
 
     /**
-     * metoda odpowiedzialna za ruch węża w odpowiednim czasie
-     * @param deltaTime określa czas, jaki upłynął od jej poprzedniego wywołania
+     * metoda odpowiedzialna za ruch weza w odpowiednim czasie
+     * @param deltaTime okresla czas, jaki upłynał od jej poprzedniego wywolania
      */
     public void act(float deltaTime){
         if(changeDirection){
@@ -64,23 +64,23 @@ public class Snake {
     }
 
     /**
-     * metoda sprawdzająca czy głowa węża znalazła się na pozycji owocu
-     * @param fruitPosition określa aktualnie wygenerowaną pozycję owocu
-     * @return zwraca true gdy głowa jest na pozycji owocu
+     * metoda sprawdzajaca czy glowa weza znalazla się na pozycji owocu
+     * @param fruitPosition okresla aktualnie wygenerowana pozycje owocu
+     * @return zwraca true gdy glowa jest na pozycji owocu
      */
     public boolean isFruitFound(GridPoint2 fruitPosition){
         return snakeElement.get(0).equals(fruitPosition);
     }
 
     /**
-     * metoda powiększa węża o jeden element od ogona
+     * metoda powieksza weza o jeden element od ogona
      */
     public void extendSnake(){
         snakeElement.add(new GridPoint2(snakeElement.get(snakeElement.size() - 1)));
     }
 
     /**
-     * metoda odpowedzialna za przemieszczanie się węża
+     * metoda odpowedzialna za przemieszczanie sie weza
      */
     private void move(){
         for (int i = snakeElement.size() - 1; i > 0; i--) {
@@ -112,7 +112,7 @@ public class Snake {
     }
 
     /**
-     * metoda odpowiedzialna za zmianę kierunku ruchu węża
+     * metoda odpowiedzialna za zmiane kierunku ruchu weza
      */
     private void directionChange(){
         Direction nextDirection = snakeDirection;
@@ -139,8 +139,8 @@ public class Snake {
     }
 
     /**
-     * metoda sprawdzająca czy głowa węża nie zderzyła się z resztą ciała
-     * @return zwraca true gdy głowa zderzy się z resztą ciała co kończy grę
+     * metoda sprawdzajaca czy glowa weza nie zderzyla się z reszta ciala
+     * @return zwraca true gdy glowa zderzy sie z reszta ciala co konczy gre
      */
     public boolean hasHit(){
         for (int i = 1; i < snakeElement.size(); i++) {
@@ -152,8 +152,8 @@ public class Snake {
     }
 
     /**
-     * metoda rysuje kolejne kwadraty obrazujące węża
-     * @param batch wykorzystany w pętli for each do przejścia przez całą listę
+     * metoda rysuje kolejne kwadraty obrazujace weza
+     * @param batch wykorzystany w petli for each do przejscia przez cala liste
      */
     public void draw(Batch batch){
         for(GridPoint2 pos : snakeElement){

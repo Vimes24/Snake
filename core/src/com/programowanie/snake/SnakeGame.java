@@ -6,11 +6,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-
 /**
- * Główna klasa aplikacji
+ * Glowna klasa aplikacji
  */
-
 public class SnakeGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Texture snakeImg;
@@ -18,9 +16,8 @@ public class SnakeGame extends ApplicationAdapter {
 	private Snake snake;
 	private Fruit fruit;
 	private boolean gameOver;
-
 	/**
-	 * metoda wywoływana jednorazowo podczas uruchamiania programu – inicjalizacja gry
+	 * metoda wywolywana jednorazowo podczas uruchamiania programu – inicjalizacja gry
  	 */
 	@Override
 	public void create () {
@@ -31,18 +28,16 @@ public class SnakeGame extends ApplicationAdapter {
 		fruit = new Fruit(fruitImg);
 		startNewGame();
 	}
-
 	/**
-	 * metoda uruchamiająca powtórnie nową grę
+	 * metoda uruchamiajaca powtornie nowa gre
 	 */
 	private void startNewGame(){
 		snake.newGame();
 		fruit.randomLocation();
 		gameOver = false;
 	}
-
 	/**
-	 * metoda wywoływana celem aktualizowania stanu i rysowania świata gry
+	 * metoda wywolywana celem aktualizowania stanu i rysowania swiata gry
 	 */
 	@Override
 	public void render () {
@@ -53,9 +48,8 @@ public class SnakeGame extends ApplicationAdapter {
 		snake.draw(batch);
 		batch.end();
 	}
-
 	/**
-	 * metoda aktualizująca stan gry
+	 * metoda aktualizujaca stan gry
 	 */
 	private void update(){
 		if(!gameOver){
@@ -74,9 +68,8 @@ public class SnakeGame extends ApplicationAdapter {
 			}
 		}
 	}
-
 	/**
-	 * metoda wywoływana, gdy program ma zakończyć działanie, a my powinniśmy zwolnić zasoby
+	 * metoda wywolywana, gdy program ma zakonczyc dzialanie, a my powinnismy zwolnic zasoby
 	 */
 	@Override
 	public void dispose () {

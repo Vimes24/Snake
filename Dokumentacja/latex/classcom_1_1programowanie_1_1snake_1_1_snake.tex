@@ -1,0 +1,357 @@
+\doxysection{com.\+programowanie.\+snake.\+Snake Class Reference}
+\label{classcom_1_1programowanie_1_1snake_1_1_snake}\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Snake} (Texture \textbf{ texture})
+\item 
+void \textbf{ new\+Game} ()
+\item 
+void \textbf{ act} (float delta\+Time)
+\item 
+boolean \textbf{ is\+Fruit\+Found} (Grid\+Point2 fruit\+Position)
+\item 
+void \textbf{ extend\+Snake} ()
+\item 
+boolean \textbf{ has\+Hit} ()
+\item 
+void \textbf{ draw} (Batch batch)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ move} ()
+\item 
+void \textbf{ direction\+Change} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Texture \textbf{ texture}
+\item 
+final List$<$ Grid\+Point2 $>$ \textbf{ snake\+Element}
+\item 
+\textbf{ Direction} \textbf{ snake\+Direction}
+\item 
+float \textbf{ elapsed\+Time}
+\item 
+boolean \textbf{ change\+Direction}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuje na ekranie postac weza 
+
+Definition at line \textbf{ 20} of file \textbf{ Snake.\+java}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a7343c8a4998c134e92eacea7ca3d8d1b}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!Snake@{Snake}}
+\index{Snake@{Snake}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{Snake()}
+{\footnotesize\ttfamily com.\+programowanie.\+snake.\+Snake.\+Snake (\begin{DoxyParamCaption}\item[{Texture}]{texture }\end{DoxyParamCaption})}
+
+Konstruktor tworzacy obiekt 
+\begin{DoxyParams}{Parameters}
+{\em texture} & wykorzystuje asset w formie zdjecia do zobrazowania weza \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 31} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031                                  \{}
+\DoxyCodeLine{00032         this.texture = texture;}
+\DoxyCodeLine{00033         snakeElement = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{00034     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a29132c2f8057f3ab03441fee7d475da3}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!act@{act}}
+\index{act@{act}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{act()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+act (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+metoda odpowiedzialna za ruch weza w odpowiednim czasie 
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & okresla czas, jaki upłynał od jej poprzedniego wywolania \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 54} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054                                     \{}
+\DoxyCodeLine{00055         \textcolor{keywordflow}{if}(changeDirection)\{}
+\DoxyCodeLine{00056             directionChange();}
+\DoxyCodeLine{00057         \}}
+\DoxyCodeLine{00058         elapsedTime += deltaTime;}
+\DoxyCodeLine{00059         \textcolor{keywordflow}{if}(elapsedTime >= 0.1)\{}
+\DoxyCodeLine{00060             elapsedTime = 0;}
+\DoxyCodeLine{00061             changeDirection = \textcolor{keyword}{true};}
+\DoxyCodeLine{00062             move();}
+\DoxyCodeLine{00063         \}}
+\DoxyCodeLine{00064     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a14f2c6be4affadab111a8cb0a81957c4}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!directionChange@{directionChange}}
+\index{directionChange@{directionChange}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{directionChange()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+direction\+Change (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+metoda odpowiedzialna za zmiane kierunku ruchu weza 
+
+Definition at line \textbf{ 117} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117                                   \{}
+\DoxyCodeLine{00118         Direction nextDirection = snakeDirection;}
+\DoxyCodeLine{00119         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) \&\& snakeDirection != Direction.RIGHT)\{}
+\DoxyCodeLine{00120             nextDirection = Direction.LEFT;}
+\DoxyCodeLine{00121         \}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) \&\& snakeDirection != Direction.LEFT)\{}
+\DoxyCodeLine{00124             nextDirection = Direction.RIGHT;}
+\DoxyCodeLine{00125         \}}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.UP) \&\& snakeDirection != Direction.DOWN)\{}
+\DoxyCodeLine{00128             nextDirection = Direction.UP;}
+\DoxyCodeLine{00129         \}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if}(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) \&\& snakeDirection != Direction.UP)\{}
+\DoxyCodeLine{00132             nextDirection = Direction.DOWN;}
+\DoxyCodeLine{00133         \}}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135         \textcolor{keywordflow}{if}(snakeDirection != nextDirection)\{}
+\DoxyCodeLine{00136             snakeDirection = nextDirection;}
+\DoxyCodeLine{00137             changeDirection = \textcolor{keyword}{false};}
+\DoxyCodeLine{00138         \}}
+\DoxyCodeLine{00139     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a544c64bab4899e36be689a9e9de04493}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!draw@{draw}}
+\index{draw@{draw}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{draw()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+draw (\begin{DoxyParamCaption}\item[{Batch}]{batch }\end{DoxyParamCaption})}
+
+metoda rysuje kolejne kwadraty obrazujace weza 
+\begin{DoxyParams}{Parameters}
+{\em batch} & wykorzystany w petli for each do przejscia przez cala liste \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 158} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158                                  \{}
+\DoxyCodeLine{00159         \textcolor{keywordflow}{for}(GridPoint2 pos : snakeElement)\{}
+\DoxyCodeLine{00160             batch.draw(texture, pos.x, pos.y);}
+\DoxyCodeLine{00161         \}}
+\DoxyCodeLine{00162     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a65374a01677dc9a80caebcf6a3dca0bf}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!extendSnake@{extendSnake}}
+\index{extendSnake@{extendSnake}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{extendSnake()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+extend\+Snake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda powieksza weza o jeden element od ogona 
+
+Definition at line \textbf{ 78} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078                              \{}
+\DoxyCodeLine{00079         snakeElement.add(\textcolor{keyword}{new} GridPoint2(snakeElement.get(snakeElement.size() -\/ 1)));}
+\DoxyCodeLine{00080     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a3d8c180d17ce4d692576fdb0d479b403}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!hasHit@{hasHit}}
+\index{hasHit@{hasHit}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{hasHit()}
+{\footnotesize\ttfamily boolean com.\+programowanie.\+snake.\+Snake.\+has\+Hit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda sprawdzajaca czy glowa weza nie zderzyla się z reszta ciala \begin{DoxyReturn}{Returns}
+zwraca true gdy glowa zderzy sie z reszta ciala co konczy gre 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 145} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00145                            \{}
+\DoxyCodeLine{00146         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < snakeElement.size(); i++) \{}
+\DoxyCodeLine{00147             \textcolor{keywordflow}{if}(snakeElement.get(i).equals(snakeElement.get(0)))\{}
+\DoxyCodeLine{00148                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00149             \}}
+\DoxyCodeLine{00150         \}}
+\DoxyCodeLine{00151         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00152     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a44a4bfbf8512e4490801ee3a545139c6}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!isFruitFound@{isFruitFound}}
+\index{isFruitFound@{isFruitFound}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{isFruitFound()}
+{\footnotesize\ttfamily boolean com.\+programowanie.\+snake.\+Snake.\+is\+Fruit\+Found (\begin{DoxyParamCaption}\item[{Grid\+Point2}]{fruit\+Position }\end{DoxyParamCaption})}
+
+metoda sprawdzajaca czy glowa weza znalazla się na pozycji owocu 
+\begin{DoxyParams}{Parameters}
+{\em fruit\+Position} & okresla aktualnie wygenerowana pozycje owocu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zwraca true gdy glowa jest na pozycji owocu 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 71} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071                                                          \{}
+\DoxyCodeLine{00072         \textcolor{keywordflow}{return} snakeElement.get(0).equals(fruitPosition);}
+\DoxyCodeLine{00073     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a9ab1a7e587935c0e7a7b649eb5a8ea53}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!move@{move}}
+\index{move@{move}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{move()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+metoda odpowedzialna za przemieszczanie sie weza 
+
+Definition at line \textbf{ 85} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085                        \{}
+\DoxyCodeLine{00086         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = snakeElement.size() -\/ 1; i > 0; i-\/-\/) \{}
+\DoxyCodeLine{00087             snakeElement.get(i).set(snakeElement.get(i -\/ 1));}
+\DoxyCodeLine{00088         \}}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090         \textcolor{keywordtype}{int} elementWidth = texture.getWidth();}
+\DoxyCodeLine{00091         \textcolor{keywordtype}{int} elementHeight = texture.getWidth();}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093         \textcolor{keywordtype}{int} lastElementX = Gdx.graphics.getWidth() -\/ elementWidth;}
+\DoxyCodeLine{00094         \textcolor{keywordtype}{int} lastElementY = Gdx.graphics.getHeight() -\/ elementHeight;}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096         GridPoint2 head = snakeElement.get(0);}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098         \textcolor{keywordflow}{switch} (snakeDirection)\{}
+\DoxyCodeLine{00099             \textcolor{keywordflow}{case} RIGHT:}
+\DoxyCodeLine{00100                 head.x = (head.x == lastElementX) ? 0 : head.x + elementWidth;}
+\DoxyCodeLine{00101                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102             \textcolor{keywordflow}{case} LEFT:}
+\DoxyCodeLine{00103                 head.x = (head.x == 0) ? lastElementX : head.x -\/ elementWidth;}
+\DoxyCodeLine{00104                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{case} UP:}
+\DoxyCodeLine{00106                 head.y = (head.y == lastElementY) ? 0 : head.y + elementHeight;}
+\DoxyCodeLine{00107                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108             \textcolor{keywordflow}{case} DOWN:}
+\DoxyCodeLine{00109                 head.y = (head.y == 0) ? lastElementY : head.y -\/ elementHeight;}
+\DoxyCodeLine{00110                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00111         \}}
+\DoxyCodeLine{00112     \}}
+
+\end{DoxyCode}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a3569e3bed21f238f2cc755fd278e75fa}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!newGame@{newGame}}
+\index{newGame@{newGame}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{newGame()}
+{\footnotesize\ttfamily void com.\+programowanie.\+snake.\+Snake.\+new\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+metoda resetujaca ustawienia po zakonczeniu i ponownym uruchomieniu gry 
+
+Definition at line \textbf{ 39} of file \textbf{ Snake.\+java}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039                          \{}
+\DoxyCodeLine{00040         elapsedTime = 0;}
+\DoxyCodeLine{00041         snakeDirection = Direction.RIGHT;}
+\DoxyCodeLine{00042         snakeElement.clear();}
+\DoxyCodeLine{00043         snakeElement.add(\textcolor{keyword}{new} GridPoint2(90, 30));}
+\DoxyCodeLine{00044         snakeElement.add(\textcolor{keyword}{new} GridPoint2(75, 30));}
+\DoxyCodeLine{00045         snakeElement.add(\textcolor{keyword}{new} GridPoint2(60, 30));}
+\DoxyCodeLine{00046         snakeElement.add(\textcolor{keyword}{new} GridPoint2(45, 30));}
+\DoxyCodeLine{00047         snakeElement.add(\textcolor{keyword}{new} GridPoint2(30, 30));}
+\DoxyCodeLine{00048     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a5f4591e1a8cc869afed8b3b825c787f4}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!changeDirection@{changeDirection}}
+\index{changeDirection@{changeDirection}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{changeDirection}
+{\footnotesize\ttfamily boolean com.\+programowanie.\+snake.\+Snake.\+change\+Direction\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ Snake.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a72811ed55fb09a1456b72e1a08e7d0a3}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!elapsedTime@{elapsedTime}}
+\index{elapsedTime@{elapsedTime}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{elapsedTime}
+{\footnotesize\ttfamily float com.\+programowanie.\+snake.\+Snake.\+elapsed\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ Snake.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a095c387557eca457988842f00bdb091b}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!snakeDirection@{snakeDirection}}
+\index{snakeDirection@{snakeDirection}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{snakeDirection}
+{\footnotesize\ttfamily \textbf{ Direction} com.\+programowanie.\+snake.\+Snake.\+snake\+Direction\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ Snake.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_af036f989a2ecfca08aba5b4175494dc8}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!snakeElement@{snakeElement}}
+\index{snakeElement@{snakeElement}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{snakeElement}
+{\footnotesize\ttfamily final List$<$Grid\+Point2$>$ com.\+programowanie.\+snake.\+Snake.\+snake\+Element\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ Snake.\+java}.
+
+\mbox{\label{classcom_1_1programowanie_1_1snake_1_1_snake_a723bf3d0afe68d50501caa9409772abf}} 
+\index{com.programowanie.snake.Snake@{com.programowanie.snake.Snake}!texture@{texture}}
+\index{texture@{texture}!com.programowanie.snake.Snake@{com.programowanie.snake.Snake}}
+\doxysubsubsection{texture}
+{\footnotesize\ttfamily final Texture com.\+programowanie.\+snake.\+Snake.\+texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ Snake.\+java}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+W\+:/studia/\+Materialy WSIZ/\+III semestr/\+Programowanie obiektowe/\+Projekt/\+Snake/core/src/com/programowanie/snake/\textbf{ Snake.\+java}\end{DoxyCompactItemize}

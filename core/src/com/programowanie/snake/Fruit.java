@@ -6,15 +6,15 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.GridPoint2;
 
 /**
- * klasa geneująca obiekt owocu zjadanego przez węża
+ * klasa generujaca obiekt owocu zjadanego przez weza
  */
 public class Fruit {
     private final GridPoint2 position;
     private final Texture texture;
 
     /**
-     * Konstruktor tworzący obiekt
-     * @param texture wykorzystuje asset w formie zdjęcia do zobrazowania węża
+     * Konstruktor tworzacy obiekt
+     * @param texture wykorzystuje asset w formie zdjecia do zobrazowania weza
      */
     public Fruit(Texture texture){
         this.texture = texture;
@@ -22,7 +22,7 @@ public class Fruit {
     }
 
     /**
-     * metoda generująca owoc w losowym miejscu planszy
+     * metoda generujaca owoc w losowym miejscu planszy
      */
     public void randomLocation(){
         int xPosition = Gdx.graphics.getWidth() / texture.getWidth();
@@ -40,7 +40,7 @@ public class Fruit {
     }
 
     /**
-     * metoda zwraca pozycję owocu
+     * metoda zwraca pozycje owocu
      * @return zwraca miejsce na planszy gdzie jest umiejscowiony owoc
      */
     public GridPoint2 getPosition() {
